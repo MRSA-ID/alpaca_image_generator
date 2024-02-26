@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Previewer from "./Previewer";
 import { ImageConfig, TSFixMe } from "../interfaces";
+import { ATTRIBUTE_MAP } from "../constants/imageAttributes";
+import random from "../utils/random";
 
 const DEFAULT_IMAGE_CONFIG = {
   background: "#002966",
@@ -27,7 +29,15 @@ const AlpacaGenerator = () => {
     }));
   };
 
-  const _shuffle = () => {};
+  const _shuffle = () => {
+    setAlpacaConfig((config) => {
+      Object.keys(DEFAULT_IMAGE_CONFIG).forEach((key) => {
+        const imageConfigKey = key as keyof ImageConfig;
+        config[imageConfigKey] = random(ATTRIBUTE_MAP[imageConfigKey].values);
+      });
+      return { ...config };
+    });
+  };
 
   return (
     <StyledWrapper>

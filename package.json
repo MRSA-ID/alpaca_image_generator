@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/merge-images": "^1.2.4",
     "@types/react-helmet": "^6.1.11",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",

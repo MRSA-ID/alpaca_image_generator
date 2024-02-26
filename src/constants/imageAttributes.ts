@@ -19,7 +19,7 @@ const ACCESSORIES_MAP = {
 
 const LEG_MAP = {
   default: "default",
-  bubbleTea: "buble-tea",
+  bubbleTea: "bubble-tea",
   cookie: "cookie",
   gameConsole: "game-console",
   tiltBackward: "tilt-backward",
