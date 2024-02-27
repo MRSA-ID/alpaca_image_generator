@@ -9,7 +9,6 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -25,10 +24,73 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Alpaca Image Generator</title>
+    <style>
+      .containerPreloader {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* width: 100vw; */
+        height: 100vh;
+      }
+      .backgroundIMG {
+        width: 360px;
+        height: 360px;
+        max-width: 360px;
+        max-height: 360px;
+        border-radius: 12px;
+        animation: animateBackground 8s infinite;
+      }
+      .backgroundIMG  > img {
+        width: 100%;
+        height: auto;
+      }
+
+      .loading {
+        display: flex;
+        position: relative;
+      }
+
+      .loading > .gifLoading {
+        /* padding: 40px 40px; */
+        position: relative;
+        width: 100px;
+        height: auto;
+        left: -20px;
+        bottom: -10px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-image: url("Loading.gif");
+      }
+
+      @keyframes animateBackground {
+        0%{background-color: #00193d;}
+        20%{background-color: #002966;}
+        30%{background-color: #2a5ca7;}
+        40%{background-color: #2a7bf4;}
+        50%{background-color: #5596f6;}
+        60%{background-color: #8bb7f9;}
+        70%{background-color: #9fd966;}
+        80%{background-color: #fcd33f;}
+        90%{background-color: #e85e23;}
+        100%{background-color: #666;}
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="loading" class="containerPreloader">
+      <div class="backgroundIMG">
+        <img src="./Alpaca_logo.png" alt="Alpaca_logo" srcset="Alpaca_logo.png">
+      </div>
+      <h1 class="loading">Loading
+        <div class="gifLoading"></div>
+      </h1>
+    </div>
+    <div id="root">
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -98,7 +98,7 @@ const ControlPanel = ({
 };
 
 const StyledWrapper = styled.div`
-  max-width: 364px;
+  max-width: 80%;
   @media (max-width: 768px) {
     max-width: 100%;
   }
