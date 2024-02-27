@@ -3,6 +3,7 @@ import { ATTRIBUTE_MAP, ATTRIBUTES } from "../../constants/imageAttributes";
 import { ImageConfig, TSFixMe } from "../../interfaces";
 import Button from "./Button";
 import ColorButton from "./ColorButton";
+import { useState } from "react";
 
 interface Props {
   alpacaConfig: ImageConfig;
@@ -17,7 +18,83 @@ const ControlPanel = ({
   setActiveAttribute,
   setActiveSubAttribute,
 }: Props) => {
-  return <div></div>;
+  const activeSubAttribute = alpacaConfig[activeAttribute];
+  // const [color, setColor] = useState('#20d3c4')
+
+  const _setActiveSubAttribute = (value: TSFixMe) => {
+    setActiveSubAttribute({
+      [activeAttribute]: value,
+    });
+  };
+
+  const _renderStyleText = (value: string) => {
+    if (!value) {
+      return "none";
+    }
+    return value.replace(/-/g, "");
+  };
+
+  return (
+    <StyledWrapper>
+      <StyledFrame>
+        <StyledTitle>Accessories the Alpaca's</StyledTitle>
+        <div>
+          {ATTRIBUTES.map((key) => {
+            const { text } = ATTRIBUTE_MAP[key];
+            return (
+              <StyledButton
+                key={key}
+                title={text}
+                active={activeAttribute === key}
+                onClick={() => setActiveAttribute(key)}
+              >
+                {text}
+              </StyledButton>
+            );
+          })}
+        </div>
+      </StyledFrame>
+      <StyledFrame>
+        {activeAttribute === "background" ? (
+          <>
+            <StyledTitle>Colors</StyledTitle>
+            <StyledColorButtonWrapper>
+              {ATTRIBUTE_MAP[activeAttribute].values.map((value) => {
+                // if (value === "select") {
+                //   return (<input type="color" value={color} onChange={e => _setActiveSubAttribute(e.target.value)} />)
+                // }
+                return (
+                  <StyledColorButton
+                    key={value}
+                    active={activeSubAttribute === value}
+                    color={value}
+                    onClick={() => _setActiveSubAttribute(value)}
+                  />
+                );
+              })}
+            </StyledColorButtonWrapper>
+          </>
+        ) : (
+          <>
+            <StyledTitle>style</StyledTitle>
+            <div>
+              {ATTRIBUTE_MAP[activeAttribute].values.map((value) => {
+                return (
+                  <StyledButton
+                    key={value}
+                    active={activeSubAttribute === value}
+                    onClick={() => _setActiveSubAttribute(value)}
+                  >
+                    {_renderStyleText(value)}
+                  </StyledButton>
+                );
+              })}
+            </div>
+          </>
+        )}
+      </StyledFrame>
+    </StyledWrapper>
+  );
 };
 
 const StyledWrapper = styled.div`

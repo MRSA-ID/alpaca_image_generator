@@ -26,6 +26,7 @@ const DEV_PROJECTS_LOGO_PATH = "/images/devprojects-logo-vertical.png";
 
 const Previewer = ({ alpacaConfig, shuffle }: Props) => {
   const imagesRef = useRef<Images>([]);
+
   const _download = () => {
     // console.log('masuk download')
     const backgroundName = COLORS_VALUE_NAME_MAP[alpacaConfig.background];
@@ -101,7 +102,7 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
         {_renderParts()}
         <StyledLogo src="/images/devprojects-logo-vertical.png" />
       </StyledInner>
-      <div>
+      <StyledButtonWrapper>
         <StyledButton onClick={shuffle}>
           <span>
             <StyledButtonIcon>🔀</StyledButtonIcon>
@@ -114,7 +115,7 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
             Download
           </span>
         </StyledButton>
-      </div>
+      </StyledButtonWrapper>
     </StyledWrapper>
   );
 };
@@ -126,6 +127,15 @@ const StyledWrapper = styled.div`
     grid-template-columns: min(90%, 360px) 45px;
   }
 `;
+
+const StyledButtonWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+`;
+
 const StyledInner = styled.div<{ $bg: string }>`
   height: 360px;
   width: 360px;
@@ -168,7 +178,7 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 3px;
   color: ${(props) => props.theme.colors.grey80};
-  background: ${(props) => props.theme.colors.white};
+  background: ${(props) => props.theme.colors.grey20};
   padding: 12px 8px;
   outline: none;
   &:hover,
@@ -180,10 +190,14 @@ const StyledButton = styled.button`
     background: ${(props) => props.theme.colors.grey10};
   }
   @media (max-width: 768px) {
-    transform-origin: top left;
-    transform: rotate(90deg);
-    margin-left: 32px;
-    position: absolute;
+    transform-origin: 50px 60px;
+    width: auto;
+    height: auto;
+    & + & {
+      margin-left: 0px;
+    }
+    transform: rotate(-90deg);
+    margin-left: 0px;
   }
 `;
 

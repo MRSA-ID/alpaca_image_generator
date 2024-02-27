@@ -4,6 +4,7 @@ import Previewer from "./Previewer";
 import { ImageConfig, TSFixMe } from "../interfaces";
 import { ATTRIBUTE_MAP } from "../constants/imageAttributes";
 import random from "../utils/random";
+import ControlPanel from "./ControlPanel";
 
 const DEFAULT_IMAGE_CONFIG = {
   background: "#002966",
@@ -42,8 +43,17 @@ const AlpacaGenerator = () => {
   return (
     <StyledWrapper>
       <StyledMain>
-        <StyledTitle>Alpaca Generator</StyledTitle>
+        <StyledTitle>
+          Alpaca Generator
+          <StyledCreated>by ramadhan-developer</StyledCreated>
+        </StyledTitle>
         <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
+        <ControlPanel
+          alpacaConfig={alpacaConfig}
+          activeAttribute={activeAttribute}
+          setActiveAttribute={setActiveAttribute}
+          setActiveSubAttribute={_updateAlpacaConfig}
+        />
       </StyledMain>
     </StyledWrapper>
   );
@@ -52,7 +62,7 @@ const AlpacaGenerator = () => {
 const StyledWrapper = styled.div`
   min-height: 100vh;
   height: 100%;
-  background: ${(props) => props.theme.colors.grey20};
+  background: ${(props) => props.theme.colors.white};
 `;
 
 const StyledMain = styled.main`
@@ -86,4 +96,11 @@ const StyledTitle = styled.h1`
     font-size: 2rem;
   }
 `;
+
+const StyledCreated = styled.span`
+  margin-left: 1em;
+  font-size: 1rem;
+  color: ${(props) => props.theme.colors.blue70};
+`;
+
 export default React.memo(AlpacaGenerator);
