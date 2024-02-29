@@ -71,12 +71,12 @@ const StyledMain = styled.main`
   justify-items: center;
   grid-row-gap: 32px;
   grid-column-gap: 12px;
-  max-width: 1024px;
+  max-width: 1280px;
   padding: 15px 16px;
   margin-left: auto;
   margin-right: auto;
   @media (max-width: 860px) {
-    grid-template-columns: 480px 1fr;
+    /* grid-template-columns: 480px 1fr; */
     grid-column-gap: 36px;
   }
   @media (max-width: 768px) {
