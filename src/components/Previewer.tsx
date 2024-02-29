@@ -129,25 +129,27 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
   @media (max-width: 768px) {
-    display: flex;
+    width: 9rem;
     flex-direction: column;
     justify-content: space-around;
   }
 `;
 
 const StyledInner = styled.div<{ $bg: string }>`
-  height: 360px;
-  width: 360px;
-  max-width: 360px;
-  max-height: 360px;
+  height: 720px;
+  width: 720px;
+  max-width: 720px;
+  max-height: 720px;
   transition: background-color 0.3s;
   background-color: ${({ $bg }) => $bg};
   position: relative;
   @media (max-width: 768px) {
     height: 0;
     width: 90%;
-    padding-bottom: min(90%, 360px);
+    padding-bottom: min(90%, 720px);
   }
 `;
 
@@ -171,7 +173,8 @@ const StyledButton = styled.button`
   & + & {
     margin-left: 20px;
   }
-  min-width: 170px;
+  position: relative;
+  width: 100%;
   font-size: 1rem;
   line-height: 1.5;
   font-weight: bold;
